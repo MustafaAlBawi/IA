@@ -2,7 +2,6 @@
 class Appointment():
     def __init__(self):
         #class properties (with __init__ value)
-        self.appointment = None
         self.name = ""
         self.type = ""
         self.start_date = None
@@ -12,9 +11,36 @@ class Appointment():
         self.properties = []
         self.attendees = []
 
-    def getAppointment(self):
-        pass
+    """ set class functions """
+    def setName(self, name):
+        self.name = name
 
+    def setType(self, appointment_type):
+        self.type = appointment_type
+    
+    def setStartDate(self, start_date):
+        self.start_date = start_date
+
+    def setEndDate(self, end_date):
+        self.end_date = end_date
+
+    def setPriority(self, priority):
+        self.priority = priority
+
+    def setSuperTypes(self, super_type):
+        if isinstance(super_type, list):
+            for t in super_type:
+                self.super_types.append(t)
+        else:
+            self.super_types.append = super_type
+
+    def setProperties(self):
+        return self.properties
+        
+    def setAttendees(self):
+        return self.attendees
+
+    """ get class functions """
     def getName(self):
         return self.name
 
