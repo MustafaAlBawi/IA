@@ -1,5 +1,5 @@
 
-class UserInput():
+class UserInput:
     def __init__(self):
         self.creator_name = "NA"
         self.creator_email = "NA"
