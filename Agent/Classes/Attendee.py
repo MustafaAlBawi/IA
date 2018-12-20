@@ -1,9 +1,9 @@
 
 class Attendee():
-    def __init__(self, name, email, priority):
+    def __init__(self, name, email):
         self.name = name
         self.email = email
-        self.priority = priority
+        self.priority = None
 
     def getName(self):
         return self.name
