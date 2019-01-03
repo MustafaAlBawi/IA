@@ -1,5 +1,5 @@
 
-class Appointment():
+class Appointment:
     def __init__(self):
         #class properties (with __init__ value)
         self.name = ""
@@ -28,16 +28,17 @@ class Appointment():
         self.priority = priority
 
     def setSuperTypes(self, super_type):
-        if isinstance(super_type, list):
-            for t in super_type:
-                self.super_types.append(t)
-        else:
-            self.super_types.append = super_type
+        self.super_types.extend(super_type)
+        # if isinstance(super_type, list):
+        #     for t in super_type:
+        #         self.super_types.append(t)
+        # else:
+        #     self.super_types.append = super_type
 
     def setProperties(self):
         return self.properties
         
-    def setAttendees(self):
+    def setAttendees(self, attendees):
         return self.attendees
 
     """ get class functions """
