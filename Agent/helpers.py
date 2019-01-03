@@ -1,5 +1,11 @@
 from Classes.UserInput import UserInput
-import datetime
+from Classes.Appointment import Appointment
+from Classes.Attendee import Attendee
+from httplib2 import Http
+from oauth2client import file, client, tools
+
+from datetime import datetime, timedelta, timezone
+from dateutil import rrule
 
 
 def ConsoleGetUserInput():
@@ -54,7 +60,7 @@ def ConsoleGetUserInput():
     user_input.priority(int(priority))
     user_input.attendees(attendees)
 
-
+    return user_input
 
     # print("Welcome to Time-Grasp; The app that creates appointments for you and your friends. \n \
     #         To make a new appointment, we need some information from you. \n \
@@ -66,7 +72,82 @@ def ConsoleGetUserInput():
     # if (input == "retype"):
     #     pass
 
+def createNewAppointment(user_input: UserInput):
+    new_appointment = Appointment()
+    new_appointment.setName(user_input.getName())
+    new_appointment.setType(user_input.getType())
+    new_appointment.setStartDate(user_input.getStartDate())
+    new_appointment.setEndDate(user_input.getEndDate())
+    new_appointment.setPriority(user_input.getPriority())
+    # pas dit aan zodat t werkt (laat "appointment" weg zolang t niet gefikst is):
+    new_.setSuperTypes("""get superTypes from ontology""")
+    new_appointment.setAttendees(user_input.getAttendees())
+
+    return new_appointment
+
+def getPossibleTimeSlots(appointment: Appointment):
+    event_times_priorities = [] # Array of array of tuples for possible timeslots;
+    # check later for lowest_found_priority over all attendees
+
+    type_time_slot = appointment.getTimeSlot() 
+    start_date = appointment.getStartDate()
+    end_date = appointment.getEndDate()
+    attendees = appointment.getAttendees()
+
+    days_between = (end_date - start_date).days # Days between start_date and end_date
+
+    for attendee in attendees:
+        potential_moments = [] # Array of time_slot tuples per attendee
+        # For loop checks daily for possibilies
+        for dt in rrule.rrule(rrule.DAILY, dtstart=start_date, until=end_date):
+            checkTimeSlots(dt, type_time_slot, potential_moments)
+        
+        event_times_priorities.append(potential_moments)
+
+    return event_times_priorities
+
+def checkTimeSlots(date: datetime, time_slot: datetime, potentials_array: list):
+    if dt.weekday in time_slot: 
+        """time_slot format moet nog worden gefikst, dus dit moet misschien nog worden aangepast"""
+        """
+            1. pak alle reeds ingeplande events op de dag dt
+            2. check of starttijden van events tussen start en eindtijd van te plannen appointment ligt
+            3. zo ja: zet appointment starttijd en event-priority in respectievelijk in tuple
+            4. zet alle appointment startijden zonder clash in tuple met priority = 0
+            5. potentials_array.append(alle tuples)
+        """
+    else:
+        break
+
+def setEvent(appointment: Appointment, event_info): 
+    # event_info is all additional data for the chosen event, besides the appointment data
     
+    # calendarId = email addresses of attendees
+    list_calenderIds = list()
+    for iD in range(len(appointment.getAttendees())):
+        list_calenderIds.append(appointment.attendees[iD].getEmail())
+
+
+    new_event = Event {
+        "end": {
+    "dateTime": "",
+    "date": "",
+    "timeZone": ""
+    },
+    "start": {
+        "date": "",
+        "dateTime": "",
+        "timeZone": ""
+    },
+    "attendees": []
+    }
+
+
+
+
+
+
+
 
 
 
