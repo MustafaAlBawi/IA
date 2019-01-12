@@ -3,9 +3,9 @@ from Classes.Appointment import Appointment
 from Classes.Attendee import Attendee
 from httplib2 import Http
 from oauth2client import file, client, tools
-
 from datetime import datetime, timedelta, timezone
 from dateutil import rrule
+from owlready import *
 
 
 def ConsoleGetUserInput():
@@ -99,18 +99,18 @@ def getPossibleTimeSlots(appointment: Appointment):
     for attendee in attendees:
         potential_moments = [] # Array of time_slot tuples per attendee
         # For loop checks daily for possibilies
-        for dt in rrule.rrule(rrule.DAILY, dtstart=start_date, until=end_date):
-            checkTimeSlots(dt, type_time_slot, potential_moments)
+        for day in rrule.rrule(rrule.DAILY, dtstart=start_date, until=end_date):
+            checkTimeSlots(day, type_time_slot, potential_moments)
         
         event_times_priorities.append(potential_moments)
 
     return event_times_priorities
 
-def checkTimeSlots(date: datetime, time_slot: datetime, potentials_array: list):
-    if dt.weekday in time_slot: 
+def checkTimeSlots(day: datetime, time_slot: datetime, potentials_array: list):
+    if day.weekday in time_slot: 
         """time_slot format moet nog worden gefikst, dus dit moet misschien nog worden aangepast"""
         """
-            1. pak alle reeds ingeplande events op de dag dt
+            1. pak alle reeds ingeplande events op de dag day
             2. check of starttijden van events tussen start en eindtijd van te plannen appointment ligt
             3. zo ja: zet appointment starttijd en event-priority in respectievelijk in tuple
             4. zet alle appointment startijden zonder clash in tuple met priority = 0
