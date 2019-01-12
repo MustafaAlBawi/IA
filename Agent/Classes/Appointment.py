@@ -1,3 +1,7 @@
+from owlready import *
+
+onto = get_ontology("./Resources/AppointmentTypes.owl")
+onto.load()
 
 class Appointment:
     def __init__(self):
@@ -16,7 +20,10 @@ class Appointment:
         self.name = name
 
     def setType(self, appointment_type):
-        self.type = appointment_type
+        try:
+            self.type = onto[appointment_type]
+        except:
+            print("There is no such type appointment in the ontology")
     
     def setStartDate(self, start_date):
         self.start_date = start_date
@@ -27,13 +34,9 @@ class Appointment:
     def setPriority(self, priority):
         self.priority = priority
 
-    def setSuperTypes(self, super_type):
+    def setSuperTypes(self, super_type): 
+        """Misschien is deze methode niet nodig, omdat de reasoner dit al moet doen"""
         self.super_types.extend(super_type)
-        # if isinstance(super_type, list):
-        #     for t in super_type:
-        #         self.super_types.append(t)
-        # else:
-        #     self.super_types.append = super_type
 
     def setProperties(self):
         return self.properties
