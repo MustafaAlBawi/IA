@@ -1,0 +1,834 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#"
+     xml:base="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:AppointmentTypes="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#hasLocation -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#hasLocation"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withPeople -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withPeople"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Afternoon -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Afternoon">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Day"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">720</xsd:minInclusive>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1140</xsd:maxExclusive>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Date -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Date">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Time"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Day -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Day">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Time"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</xsd:minInclusive>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1440</xsd:maxExclusive>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Duration -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Duration">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Time"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Evening -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Evening">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Day"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1140</xsd:minInclusive>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1440</xsd:maxExclusive>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Morning -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Morning">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Day"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">360</xsd:minInclusive>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">720</xsd:maxExclusive>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Name">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Night -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Night">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Day"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</xsd:minInclusive>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">360</xsd:maxExclusive>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Time -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Time"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Weekday -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Weekday">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Time"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:pattern>Friday</xsd:pattern>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:pattern>Monday</xsd:pattern>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:pattern>Saturday</xsd:pattern>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:pattern>Sunday</xsd:pattern>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:pattern>Thursday</xsd:pattern>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:pattern>Tuesday</xsd:pattern>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:pattern>Wednesday</xsd:pattern>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Appointments -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Appointments"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Hobbies -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Hobbies">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Leisure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Holidays -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Holidays">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Leisure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Leisure -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Leisure">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Appointments"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Meetings -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Meetings">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Work"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Music -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Music">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Hobbies"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Other -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Other">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Leisure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#People -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#People"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Personal -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Personal">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Leisure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Sports -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Sports">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Hobbies"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Studies -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Studies">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Appointments"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#TeamBuilding -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#TeamBuilding">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Work"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Work -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Work">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Appointments"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withClients -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withClients">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Meetings"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withColleagues -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withColleagues">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Meetings"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFamily -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFamily">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Personal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFriends -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFriends">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Personal"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Birthday -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Birthday">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFamily"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Family"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friends"/>
+        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1020</Afternoon>
+        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1080</Afternoon>
+        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">960</Afternoon>
+        <Evening rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1140</Evening>
+        <Evening rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1200</Evening>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Boss -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Boss">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#People"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Brainstorming -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Brainstorming">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withColleagues"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Cinema -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Cinema">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFriends"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#ClassMate -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#ClassMate">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#People"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Coffee -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Coffee">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFriends"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#CoffeeMeeting -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#CoffeeMeeting">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Meetings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Colleague -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Colleague">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#People"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#DailyMeeting -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#DailyMeeting">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Meetings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Dinner -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Dinner">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withClients"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Drinks -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Drinks">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withColleagues"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friends"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Drumming -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Drumming">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Music"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Family -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Family"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Festival -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Festival">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFriends"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#FootballMatch -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#FootballMatch">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFriends"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friday -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friday"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friend -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friend">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#People"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friends -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friends"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#HockeyMatch -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#HockeyMatch">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Sports"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#TeamMate"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#LabSession -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#LabSession">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Studies"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#ClassMate"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Lecture -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Lecture">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Studies"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#LibrarySession -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#LibrarySession">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Studies"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#ClassMate"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friend"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Lunch -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Lunch">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Other"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withColleagues"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Monday -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Monday"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Party -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Party">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFriends"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#RowingRace -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#RowingRace">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Sports"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#TeamMate"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Saturday -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Saturday"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Singing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Singing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Music"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Sinterklaas -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Sinterklaas">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Holidays"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Family"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#SmurfLarping -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#SmurfLarping">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#TeamBuilding"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#SportsEvent -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#SportsEvent">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFriends"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Sunday -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Sunday"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#TeamMate -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#TeamMate">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#People"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Thursday -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Thursday"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Training -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Training">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Sports"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#TeamMate"/>
+        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1080</Afternoon>
+        <Evening rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1140</Evening>
+        <Evening rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1200</Evening>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Trustfalls -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Trustfalls">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#TeamBuilding"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Tuesday -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Tuesday"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Wednessday -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Wednessday"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#WeeklyMeeting -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#WeeklyMeeting">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Meetings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#00:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#00:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#01:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#01:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#02:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#02:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#03:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#03:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#04:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#04:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#05:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#05:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#06:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#06:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#07:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#07:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#08:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#08:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#09:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#09:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#10:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#10:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#11:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#11:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#12:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#12:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#13:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#13:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#14:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#14:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#15:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#15:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#16:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#16:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#17:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#17:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#18:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#18:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#19:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#19:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#20:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#20:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#21:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#21:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#22:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#22:00"/>
+    
+
+
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#23:00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#23:00"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.7.2018-12-02T02:23:35Z) https://github.com/owlcs/owlapi -->
+
