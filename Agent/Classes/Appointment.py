@@ -1,19 +1,17 @@
-from owlready import *
-
-onto = get_ontology("./Resources/AppointmentTypes.owl")
+from owlready2 import *
+onto = get_ontology('./Agent/Resources/Ontology/AppointmentTypes.owl')
 onto.load()
 
 class Appointment:
-    def __init__(self):
-        #class properties (with __init__ value)
-        self.name = ""
-        self.type = ""
-        self.start_date = None
-        self.end_date = None
-        self.priority = -1
-        self.super_types = []
-        self.properties = []
-        self.attendees = []
+    def __init__(self, name = "", type_ = "", start_date = None, end_date = None, priority=-1, attendees = [], super_types = [], properties = []):
+        self.name = name
+        self.type = type_
+        self.start_date = start_date
+        self.end_date = end_date
+        self.priority = priority
+        self.attendees = attendees
+        self.super_types = super_types
+        self.properties = properties
 
     """ set class functions """
     def setName(self, name):

@@ -1,0 +1,14 @@
+{
+    "name": "Euan",
+    "email": "euan@gmail.com",
+    "type": "training",
+    "start_date": "20-01-2019",
+    "end_date": "31-01-2019",
+    "priority": "2",
+    "attendees": [
+        {
+            "name": "Euan", 
+            "email": "euanw93@gmail.com"
+        }
+    ]
+}
