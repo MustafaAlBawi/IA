@@ -38,6 +38,8 @@ class CalendarAPI(object):
         exit()
         df = self.createDateDataFrame(time_min, time_max)
 
+        # TODO:
+        # Hier onder moeten de evenementen een voor een worden ingeladen.
         if not events:
             print('No upcoming events found.')
         for event in events:
@@ -66,11 +68,16 @@ class CalendarAPI(object):
         return pd.DataFrame(None, index=index, columns=columns)
 
     def insertEvent(self, df, date, time, priority = 1):
+        # TODO:
+        # de colom kan worden opgehaald als string of met een datetime.
+        # de rij zijn dan de uuren. De uren waarop een afspraak duurt 
+        # moeten dus worden ingevuld met een priority score.
         column = df[date][time] = priority
         print(column)
 
 
-
+# TODO:
+# Code hier onder moet deels nog omgezet worden in d CalendarAPI class.
 # def main():
 #     """Shows basic usage of the Google Calendar API.
 #     Prints the start and name of the next 10 events on the user's calendar.
