@@ -65,7 +65,7 @@ class CalendarAPI(object):
     def createDateDataFrame(self, start_date, end_date):
         columns = pd.date_range(start=start_date, end=end_date, freq='D')
         index = range(1, 25)
-        return pd.DataFrame(None, index=index, columns=columns)
+        return pd.DataFrame(0, index=index, columns=columns)
 
     def insertEvent(self, df, eventStart, eventEnd, start_date, end_date, priority = 2, eventfound = 0, Time = 0):
         eventStart = int(10)
@@ -154,116 +154,51 @@ class CalendarAPI(object):
         event = service.events().insert(calendarId='primary', body=event).execute()
         print("Planned the event in the google calendar")
 
-# TODO:
-# Code hier onder moet deels nog omgezet worden in d CalendarAPI class.
-# def main():
-#     """Shows basic usage of the Google Calendar API.
-#     Prints the start and name of the next 10 events on the user's calendar.
-#     """
-#     # The file token.json stores the user's access and refresh tokens, and is
-#     # created automatically when the authorization flow completes for the first
-#     # time.
-#     store = file.Storage('token.json')
-#     creds = store.get()
-#     if not creds or creds.invalid:
-#         flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
-#         creds = tools.run_flow(flow, store)
-#     service = build('calendar', 'v3', http=creds.authorize(Http()))
+    def loadCalendarEvents(self, time_min, time_max, calendar_id = 'primary', single_events = True, order_by = 'startTime'):
+        events = self.service.events().list(
+            timeMin = time_min, 
+            timeMax = time_max,
+            calendarId = calendar_id, 
+            maxResults = 10,
+            singleEvents = single_events,
+            orderBy = order_by
+            ).execute().get('items', [])
 
-#     # Call the Calendar API
-#     now = '2019-03-04T00:00:00.00Z' #datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-#     end = '2019-03-10T00:00:00.00Z'
+        df = self.createDateDataFrame(time_min, time_max)
 
-#     print('Getting the upcoming 10 events')
-#     events_result = service.events().list(calendarId='primary', timeMin=now, timeMax =end ,
-#                                         maxResults=10, singleEvents=True,
-#                                         orderBy='startTime').execute()
-#     events = events_result.get('items', [])
+        if not events:
+            print('No upcoming events found.')
+            return df
 
-#     column = pd.Series(range(4, 10))
-#     row = pd.Series(range(0, 25))
-#     df = pd.DataFrame(0, index=row, columns=column)
+        for event in events:
+            start = parser.parse(
+                event['start'].get('dateTime', event['start'].get('date'))
+                )
+            end = parser.parse(
+                event['end'].get('dateTime', event['start'].get('date'))
+                )
 
-#     if not events:
-#         print('No upcoming events found.')
-#     for event in events:
-#         start = event['start'].get('dateTime', event['start'].get('date'))
-#         end = event['end'].get('dateTime', event['start'].get('date'))
-#         print(start, event['summary'])
-#         print(events[0])
-#         startDate = start[8:10]
-#         startTime = start[11:13]
-#         endDate = end[8:10]
-#         endTime = end[11:13]
+            duration_in_hours = int(round(divmod((end - start).total_seconds(), 3600)[0]))
 
-#         print(startDate, startTime, endDate, endTime)
+            # Check if appointment is longer then 1 full hour.
+            if (duration_in_hours < 1):
+                print('time of appointment is < 0.')
+                continue
 
-#         startTime = int(startTime)
-#         endTime = int(endTime)
-#         loop = endTime - startTime + 1
-#         for i in range(0,loop):
-#             df.set_value(startTime + i, int(startDate), 1)
+            first_hour = int(str(start.time())[0:2])
 
-#     print(df)
+            for hour in range(0, duration_in_hours):
+                # TODO: Event invullen ipv 1
+                df[start.date()][first_hour + hour] = 1
 
-#     #Plan event
-#     eventName = 'koffie'
-#     eventStart = int(10)
-#     eventDuration = int(1)
-#     eventEnd = int(12)
-#     eventfound = 0
-#     Date = 0
-#     Time = 0
-#     for j in range(4, 10):
-#         for i in range(eventStart,int(eventEnd)+1):
-#             timeslot = df.get_value(i,j)
+        return df
 
-#             if timeslot == 0:
-#                 df.set_value(int(i), int(j), 2)
-#                 print(timeslot)
-#                 Date = j
-#                 Time = i
-#                 print('Date:', j, 'Time:', i)
-#                 print('Planned the event')
-#                 eventfound = 1
-#                 break
-#         if eventfound == 1:
-#             break
+    def findPosibleEventSpace(self, df, appointment):
+        posible_timeslots = self.createDateDataFrame(appointment.start_date, appointment.end_date)
 
-#     if eventfound == 0:
-#         print('Could not find timeslot')
-#     print(df)
-#     endTime = int(Time) - 1
-#     Time = int(Time) - 2
-#     startEv = '2019-03-0'+str(Date)+'T'+str(Time)+':00:00.00Z'
-#     endEv = '2019-03-0'+str(Date)+'T'+str(endTime)+':00:00.00Z'
-#     print(startEv)
-#     print(endEv)
-#     #Insert event to google calendar
-#     event = {
-#         'summary': 'KoffieTest',
-#         'location': 'unknown',
-#         'description': 'Getting coffee',
-#         'start': {
-#             'dateTime': startEv,
-#             'timeZone': 'Europe/Amsterdam',
-#         },
-#         'end': {
-#             'dateTime': endEv,
-#             'timeZone': 'Europe/Amsterdam',
-#         },
-#         'recurrence': [
-#         ],
-#         'attendees': [
-#         ],
-#         'reminders': {
-#             'useDefault': True,
-
-#         },
-#     }
-
-#     event = service.events().insert(calendarId='primary', body=event).execute()
-#     print
-#     'Event created: %s' % (event.get('htmlLink'))
-# if __name__ == '__main__':
-#     main()
+        for day in posible_timeslots:
+            for slot in range(1, len(df[day]) + 1):
+                if (df[day][slot] < int(appointment.priority)): # Hier meer logica om te kijken of het slot echt geschikt is?
+                    posible_timeslots.loc[slot, day] = True
+  
+        return posible_timeslots
