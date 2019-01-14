@@ -68,13 +68,14 @@ class CalendarAPI(object):
         index = range(1, 25)
         return pd.DataFrame(None, index=index, columns=columns)
 
-    def insertEvent(self, df, date, time, priority = 2):
+    def insertEvent(self, df, eventStart, eventEnd, start_date, end_date, priority = 2, eventfound = 0, Time = 0):
         eventStart = int(10)
         eventEnd = int(12)
+        eventDuration = int(2)
         eventfound = 0
         Date = 0
         Time = 0
-
+        counter = 1
         start_date = '2019-03-04'
         start_date_object = datetime.datetime(int(start_date[0:4]), int(start_date[5:7]), int(start_date[8:10]))
         end_date = '2019-03-10'
@@ -84,19 +85,27 @@ class CalendarAPI(object):
 
                 if timeslot == 0:
                     df.set_value(int(i), start_date_object, 2)
-                    print(timeslot)
-                    Date = start_date_object
-                    Time = i
-                    print('Date:', Date, 'Time:', i)
-                    print('Planned the event')
-                    eventfound = 1
-                    break
+                    if eventDuration > 1:
+                        for k in range(1, eventDuration):
+                            timeslot = df.get_value(int(i + k), start_date_object)
+                            if timeslot == 0:
+                                df.set_value(int(i + k), start_date_object, 2)
+                                counter += 1
+                            else:
+                                counter = 1
+                                break
+                    if counter == eventDuration:
+                        Date = start_date_object
+                        Time = i - 1
+                        print('Date:', Date, 'Time:', i - 1)
+                        print('Planned the event')
+                        eventfound = 1
+                        break
             if eventfound == 1:
                 break
             start_date_object += datetime.timedelta(days=1)
         if eventfound == 0:
             print('Could not find timeslot')
-        print(df)
 
         # TODO:
         # de colom kan worden opgehaald als string of met een datetime.
@@ -105,20 +114,26 @@ class CalendarAPI(object):
         column = df[date][time] = priority
         print(column)
 
-    def writeInCalendar():
-        endTime = int(Time)
+        return start_date_object, Time
+
+    def writeInCalendar(start_date_object, Time, event_name, event_description):
+        event_name = 'Koffietest'
+        event_description = 'Getting coffee'
+        endTime = int(Time) + eventDuration - 1
         Time = int(Time) - 1
+
         startEv = datetime.datetime.combine(start_date_object, datetime.time(Time, 0, 0))
         endEv = datetime.datetime.combine(start_date_object, datetime.time(endTime, 0, 0))
         startEv = str(startEv.date()) + 'T' + str(startEv.time()) + 'Z'
         endEv = str(endEv.date()) + 'T' + str(endEv.time()) + 'Z'
+
         print(startEv, endEv)
 
         # Insert event to google calendar
         event = {
-            'summary': 'KoffieTest',
+            'summary': event_name,
             'location': 'unknown',
-            'description': 'Getting coffee',
+            'description': event_description,
             'start': {
                 'dateTime': startEv,
                 'timeZone': 'Europe/Amsterdam',
@@ -138,6 +153,7 @@ class CalendarAPI(object):
         }
 
         event = service.events().insert(calendarId='primary', body=event).execute()
+        print("Planned the event in the google calendar")
 
 # TODO:
 # Code hier onder moet deels nog omgezet worden in d CalendarAPI class.
