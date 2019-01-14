@@ -57,7 +57,7 @@ class CalendarAPI(object):
 
             startTime = int(startTime)
             endTime = int(endTime)
-            loop = endTime - startTime + 1
+            loop = endTime - startTime
             for i in range(0,loop):
                 df.set_value(startTime + i, int(startDate), 1)
 
