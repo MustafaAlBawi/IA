@@ -583,6 +583,20 @@
     
 
 
+    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Practice -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Practice">
+        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Sports"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#TeamMate"/>
+        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1080</Afternoon>
+        <Day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Afternoon</Day>
+        <Day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evening</Day>
+        <Evening rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1140</Evening>
+        <Evening rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1200</Evening>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#RowingRace -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#RowingRace">
@@ -648,20 +662,6 @@
     <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Thursday -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Thursday"/>
-    
-
-
-    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Training -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Training">
-        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Sports"/>
-        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#TeamMate"/>
-        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1080</Afternoon>
-        <Day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Afternoon</Day>
-        <Day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evening</Day>
-        <Evening rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1140</Evening>
-        <Evening rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1200</Evening>
-    </owl:NamedIndividual>
     
 
 
