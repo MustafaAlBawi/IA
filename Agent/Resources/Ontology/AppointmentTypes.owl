@@ -555,20 +555,11 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Practice">
         <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Sports"/>
         <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#TeamMate"/>
-        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1020</Afternoon>
-        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1080</Afternoon>
-        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">720</Afternoon>
-        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">780</Afternoon>
-        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">840</Afternoon>
-        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">900</Afternoon>
-        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">960</Afternoon>
-        <Evening rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1140</Evening>
-        <Evening rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1200</Evening>
         <has_part_of_day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Afternoon</has_part_of_day>
         <has_part_of_day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evening</has_part_of_day>
-        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1080</has_time>
-        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1140</has_time>
-        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1200</has_time>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">17</has_time>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</has_time>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">19</has_time>
     </owl:NamedIndividual>
     
 
