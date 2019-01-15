@@ -1,7 +1,7 @@
 
 
 
-class Event:# (object)?
+class Event(object):
     def __init__(self, owner = None, priority = 1):
         self.owners_priorities = [owner, priority]
         self.highest = priority
