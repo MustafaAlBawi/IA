@@ -7,6 +7,7 @@ from oauth2client import file, client, tools
 from datetime import datetime, timedelta, timezone
 from dateutil import rrule
 from owlready2 import *
+import numpy as np
 import json
 from pprint import pprint
 
@@ -21,13 +22,15 @@ Load a usercase from the UserCases dir named `name`.
 def loadUsercase(name):
     with open('./Agent/Resources/UserCaseses/' + name + '.json') as f:
         data = json.load(f)
-
+        
+    #TODO: add amount of appointments to plan
     return Appointment(
         data['name'], 
         data['type'], 
         data['start_date'],
         data['end_date'],
         data['priority'],
+        data['amount'],
         setAttendees(data['attendees']),
         )
 
@@ -43,6 +46,32 @@ def setAttendees(data_array):
 
     return tmp
 
+"""
+Do stuff with ontology
+"""
+def getTypeTimes(appointment_type):
+    type_times = onto[appointment_type].has_time
+    return type_times
+
+def getDayParts(appointment_type):
+    type_day_parts = []
+
+    if "Night" in onto[appointment_type].has_part_of_day:
+        for i in np.arange(0, 6, 1):
+            type_day_parts.extend((i*60))
+    if "Morning" in onto[appointment_type].has_part_of_day:
+            for i in np.arange(6, 12, 1):
+                type_day_parts.extend((i*60))
+    if "Afternoon" in onto[appointment_type].has_part_of_day:
+        for i in np.arange(12, 18, 1):
+            type_day_parts.extend((i*60))
+    if "Evening" in onto[appointment_type].has_part_of_day:
+        for i in np.arange(18, 23, 1):
+            type_day_parts.extend((i*60))
+
+    return type_day_parts    
+
+getTypeTimes("Practice")
 """
 Look for best Date and Time to set appointment
 """
