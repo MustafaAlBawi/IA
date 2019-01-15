@@ -23,12 +23,24 @@ class CalendarAPI(object):
             flow = client.flow_from_clientsecrets('./Agent/credentials.json', self.SCOPES)
             creds = tools.run_flow(flow, self.store)
 
+    def retrieveCalendarID(self):
+        page_token = None
+        calendar_id_list = []
+        while True:
+            calendar_list = service.calendarList().list(pageToken=page_token).execute()
+            for calendar_list_entry in calendar_list['items']:
+                calendar_id_list.append(calendar_list_entry['id'])
+            page_token = calendar_list.get('nextPageToken')
+            if not page_token:
+                break
+
+        return calendar_id_list
+
     def read(self, time_min, time_max, calendar_id = 'primary', single_events = True, order_by = 'startTime'):
         events_results = self.service.events().list(
             timeMin = time_min, 
             timeMax = time_max,
-            calendarId = calendar_id, 
-            maxResults = 10,
+            calendarId = calendar_id,
             singleEvents = single_events,
             orderBy = order_by
             ).execute()
@@ -54,11 +66,12 @@ class CalendarAPI(object):
 
             print(startDate, startTime, endDate, endTime)
 
-            startTime = int(startTime)
-            endTime = int(endTime)
-            loop = endTime - startTime
-            for i in range(0,loop):
-                df.set_value(startTime + i, int(startDate), 1)
+            if startTime: #Failsafe for multiple day events which have no time.
+                startTime = int(startTime)
+                endTime = int(endTime)
+                loop = endTime - startTime
+                for i in range(0,loop):
+                    df.set_value(startTime + i, int(startDate), 1)
 
         return df
 
