@@ -132,8 +132,8 @@ class CalendarAPI(object):
                 for j in range(len(times_array)):
                     i = j -1
                     type_times.append(day + timedelta(hours=times_array[i]))
-                    if ((possible_timeslots[day][slot] != 0) and (possible_timeslots[day][slot].getHighest() < priority)):
+                    if ((possible_timeslots[day][slot] != 0) and (possible_timeslots[day][slot] < int(priority))):
                         if (day + timedelta(hours=slot)) == type_times[i]:
-                            res_dict[day + timedelta(hours=slot)] = possible_timeslots[day][slot].getHighest()
+                            res_dict[day + timedelta(hours=slot)] = possible_timeslots[day][slot]
         return res_dict
         
