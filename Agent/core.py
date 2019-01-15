@@ -17,6 +17,7 @@ def start():
 
     # Create a hook and set load events into a dataframe
     ApiHook = CalendarAPI()
-    df = ApiHook.loadCalendarEvents('2019-01-14T00:00:00.00Z', '2019-03-17T00:00:00.00Z')
-    posible_df = ApiHook.findPosibleEventSpace(df, appointment)
-    print(posible_df.all())
+    #df = ApiHook.loadCalendarEvents('2019-01-14T00:00:00.00Z', '2019-03-17T00:00:00.00Z')
+    df = ApiHook.loadCalendarEvents(appointment.start_date, appointment.end_date)
+    possible_df = ApiHook.findPosibleEventSpace(df, appointment)
+    #print(possible_df.any())
