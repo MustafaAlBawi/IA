@@ -10,9 +10,8 @@ class Event:# (object)?
         if self.highest < priority:
             self.highest = priority
             
-        self.owners_priorities = self.owners_priorities.exteend([owner, priority])
+        self.owners_priorities = self.owners_priorities.extend([owner, priority])
 
-    
     def getOwnersPriorities(self):
         return self.owners_priorities
     
