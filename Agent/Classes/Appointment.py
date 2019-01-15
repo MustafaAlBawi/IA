@@ -42,17 +42,13 @@ class Appointment:
         type_day_parts = []
 
         if "Night" in onto[self.type].has_part_of_day:
-            for i in np.arange(0, 6, 1):
-                type_day_parts.extend((i*60))
+            type_day_parts.extend([0,1,2,3,4,5])
         if "Morning" in onto[self.type].has_part_of_day:
-                for i in np.arange(6, 12, 1):
-                    type_day_parts.extend((i*60))
+            type_day_parts.extend([6,7,8,9,10,11])
         if "Afternoon" in onto[self.type].has_part_of_day:
-            for i in np.arange(12, 18, 1):
-                type_day_parts.extend((i*60))
+            type_day_parts.extend([12,13,14,15,16,17])
         if "Evening" in onto[self.type].has_part_of_day:
-            for i in np.arange(18, 23, 1):
-                type_day_parts.extend((i*60))
+            type_day_parts.extend([18,19,20,21,22,23])
 
         return type_day_parts    
         
