@@ -1,0 +1,19 @@
+{
+    "name": "IntelligentAgent",
+    "email": "intelligenttestagent@gmail.com",
+    "type": "drinks",
+    "start_date": "20-01-2019",
+    "end_date": "27-01-2019",
+    "priority": "2",
+    "Times": "1",
+    "attendees": [
+        {
+            "name": "Euan",
+            "email": "euanw93@gmail.com"
+        }
+        {
+            "name": "IntelligentAgent",
+            "email":  "intelligenttestagent@gmail.com"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "IntelligentAgent",
+    "email": "intelligenttestagent@gmail.com",
+    "type": "training",
+    "start_date": "20-01-2019",
+    "end_date": "27-01-2019",
+    "priority": "2",
+    "Times": "3",
+    "attendees": [
+        {
+            "name": "IntelligentAgent",
+            "email":  "intelligenttestagent@gmail.com"
+        }
+    ]
+}
