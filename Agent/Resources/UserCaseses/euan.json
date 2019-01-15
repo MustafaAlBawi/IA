@@ -1,10 +1,11 @@
 {
     "name": "Euan",
     "email": "euan@gmail.com",
-    "type": "training",
-    "start_date": "20-01-2019",
-    "end_date": "31-01-2019",
+    "type": "Practice",
+    "start_date": "2019-01-14T00:00:00.00Z",
+    "end_date": "2019-03-31T00:00:00.00Z",
     "priority": "2",
+    "amount": "1",
     "attendees": [
         {
             "name": "Euan", 
