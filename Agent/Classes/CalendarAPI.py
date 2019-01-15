@@ -79,22 +79,61 @@ class CalendarAPI(object):
 
         return df
 
-    def findPosibleEventSpace(self, df, appointment):
-        possible_timeslots = dict()
-        
+    def makeTotalDF(self, df, appointment):
+        possible_timeslots = self.createDateDataFrame(appointment.start_date, appointment.end_date, 0)
+
         for day in df:
             for slot in range(1, len(df[day]) + 1):
-                if (df[day][slot] != 0 and (df[day][slot].getHighest() < int(appointment.priority))):
-                    print(slot)
-                    print(day + timedelta(hours=slot)) # hij lijkt verkeerde uren te pakken         
-
-        # possible_timeslots = self.createDateDataFrame(appointment.start_date, appointment.end_date, False)
-
-        # for day in possible_timeslots:
-        #     for slot in range(1, len(df[day]) + 1):
-        #         if (df[day][slot] != 0 and (df[day][slot].getHighest() < int(appointment.priority))):
-        #                 possible_timeslots.loc[slot, day] = True
-        #         # if (df[day][slot] < int(appointment.priority)): # Hier meer logica om te kijken of het slot echt geschikt is?
-        #         #   possible_timeslots.loc[slot, day] =
-        # print(possible_timeslots)
+                if df[day][slot] == 0:
+                    possible_timeslots[day][slot] = 0
+                elif (df[day][slot] != 0 and (df[day][slot].getHighest() < int(appointment.priority))):
+                    possible_timeslots[day][slot] = df[day][slot].getHighest()
+        
         return possible_timeslots
+
+    def findPosibleEventSpace(self, df, appointment):
+        possible_timeslots = self.makeTotalDF(df, appointment)
+
+        type_times = appointment.getTypeTimes()
+        day_parts = appointment.getDayParts()
+
+        conflict_dict = { # moet gevuld worden om beste keuze te kunnen gaan maken
+        # gevuld adhv ontology
+            "no_conflict": self.noConflictFillDict(possible_timeslots, type_times), 
+            "nc_part_day": self.noConflictFillDict(possible_timeslots, day_parts),
+            "priority_conflict": self.conflictFillDict(possible_timeslots, type_times, appointment.getPriority()),
+            "pc_part_day": self.conflictFillDict(possible_timeslots, day_parts, appointment.getPriority())
+        }
+        #TODO:
+        ## probeer per dict alles in te plannen
+        print(conflict_dict["no_conflict"])
+        return possible_timeslots # temp
+
+
+    def noConflictFillDict(self, possible_timeslots, times_array):
+        res_dict = dict()
+        for day in possible_timeslots:
+            for slot in range(1, len(possible_timeslots[day]) + 1):
+                type_times = []
+                
+                for j in range(len(times_array)):
+                    i = j -1
+                    type_times.append(day + timedelta(hours=times_array[i]))
+                    if ((possible_timeslots[day][slot] == 0) and (day + timedelta(hours=slot)) == type_times[i]):
+                        res_dict[day + timedelta(hours=slot)] = 0
+        return res_dict
+    
+    def conflictFillDict(self, possible_timeslots, times_array, priority):
+        res_dict = dict()
+        for day in possible_timeslots:
+            for slot in range(1, len(possible_timeslots[day]) + 1):
+                type_times = []
+                
+                for j in range(len(times_array)):
+                    i = j -1
+                    type_times.append(day + timedelta(hours=times_array[i]))
+                    if ((possible_timeslots[day][slot] != 0) and (possible_timeslots[day][slot].getHighest() < priority)):
+                        if (day + timedelta(hours=slot)) == type_times[i]:
+                            res_dict[day + timedelta(hours=slot)] = possible_timeslots[day][slot].getHighest()
+        return res_dict
+        
