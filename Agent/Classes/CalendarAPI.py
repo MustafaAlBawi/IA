@@ -10,11 +10,14 @@ class CalendarAPI(object):
     """
     Class that serves the google calendar API
     """
-    def __init__(self, scope='readonly'):
-        self.SCOPES = 'https://www.googleapis.com/auth/calendar.' + scope
+    def __init__(self,):
+        self.SCOPES = 'https://www.googleapis.com/auth/calendar'
         self.store = file.Storage('token.json')
         self.creds = self.store.get()
         self.checkCreds(self.creds)
+        if not self.creds or self.creds.invalid:
+            self.flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
+            self.creds = tools.run_flow(self.flow, store)
         self.service = build('calendar', 'v3', http=self.creds.authorize(Http()))
         self.now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     
@@ -27,13 +30,13 @@ class CalendarAPI(object):
         page_token = None
         calendar_id_list = []
         while True:
-            calendar_list = service.calendarList().list(pageToken=page_token).execute()
+            calendar_list = self.service.calendarList().list(pageToken=page_token).execute()
             for calendar_list_entry in calendar_list['items']:
                 calendar_id_list.append(calendar_list_entry['id'])
             page_token = calendar_list.get('nextPageToken')
             if not page_token:
                 break
-
+        print(calendar_id_list)
         return calendar_id_list
 
     def read(self, time_min, time_max, calendar_id = 'primary', single_events = True, order_by = 'startTime'):
