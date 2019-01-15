@@ -1,46 +1,19 @@
 from owlready2 import *
+import numpy as np
+
 onto = get_ontology('./Agent/Resources/Ontology/AppointmentTypes.owl')
 onto.load()
 
 class Appointment:
-    def __init__(self, name = "", type_ = "", start_date = None, end_date = None, priority=-1, attendees = [], super_types = [], properties = []):
+    def __init__(self, name = "", type_ = "", start_date = None, end_date = None, priority=-1, amount_to_plan = 1, attendees = []):
         self.name = name
         self.type = type_
         self.start_date = start_date
         self.end_date = end_date
+        self.amount_to_plan = amount_to_plan
+        self.time_slots = []
         self.priority = priority
         self.attendees = attendees
-        self.super_types = super_types
-        self.properties = properties
-
-    """ set class functions """
-    def setName(self, name):
-        self.name = name
-
-    def setType(self, appointment_type):
-        try:
-            self.type = onto[appointment_type]
-        except:
-            print("There is no such type appointment in the ontology")
-    
-    def setStartDate(self, start_date):
-        self.start_date = start_date
-
-    def setEndDate(self, end_date):
-        self.end_date = end_date
-
-    def setPriority(self, priority):
-        self.priority = priority
-
-    def setSuperTypes(self, super_type): 
-        """Misschien is deze methode niet nodig, omdat de reasoner dit al moet doen"""
-        self.super_types.extend(super_type)
-
-    def setProperties(self):
-        return self.properties
-        
-    def setAttendees(self, attendees):
-        return self.attendees
 
     """ get class functions """
     def getName(self):
@@ -55,18 +28,61 @@ class Appointment:
     def getEndDate(self):
         return self.end_date
 
-    def getTimeSlot(self):
-        time_slot = [self.start_date, self.end_date]
-        return time_slot
+    def getTimeSlots(self):
+        return self.time_slots
 
     def getPriority(self):
         return self.priority
+    
+    def getTypeTimes(self):
+        type_times = onto[self.type].has_time
+        return type_times
 
-    def getSuperTypes(self):
-        return self.super_types
+    def getDayParts(self):
+        type_day_parts = []
 
-    def getProperties(self):
-        return self.properties
+        if "Night" in onto[self.type].has_part_of_day:
+            for i in np.arange(0, 6, 1):
+                type_day_parts.extend((i*60))
+        if "Morning" in onto[self.type].has_part_of_day:
+                for i in np.arange(6, 12, 1):
+                    type_day_parts.extend((i*60))
+        if "Afternoon" in onto[self.type].has_part_of_day:
+            for i in np.arange(12, 18, 1):
+                type_day_parts.extend((i*60))
+        if "Evening" in onto[self.type].has_part_of_day:
+            for i in np.arange(18, 23, 1):
+                type_day_parts.extend((i*60))
+
+        return type_day_parts    
         
     def getAttendees(self):
         return self.attendees
+
+    
+    # """ set class functions """
+    # def setName(self, name):
+    #     self.name = name
+
+    # def setType(self, appointment_type):
+    #     self.type = appointment_type
+    
+    # def setStartDate(self, start_date):
+    #     self.start_date = start_date
+
+    # def setEndDate(self, end_date):
+    #     self.end_date = end_date
+    
+    # def addTimeSlot(self, time_slot):
+    #     while len(self.time_slots) <= self.amount_to_plan:
+    #         self.time_slots.append(time_slot)
+
+    # def setPriority(self, priority):
+    #     self.priority = priority
+
+    # def setProperties(self):
+    #     return self.properties
+        
+    # def setAttendees(self, attendees):
+    #     return self.attendees
+
