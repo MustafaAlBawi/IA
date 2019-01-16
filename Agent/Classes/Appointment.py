@@ -10,7 +10,7 @@ class Appointment:
         self.type = type_
         self.start_date = start_date
         self.end_date = end_date
-        self.amount_to_plan = amount_to_plan
+        self.amount = int(amount_to_plan)
         self.time_slots = []
         self.priority = priority
         self.attendees = attendees
