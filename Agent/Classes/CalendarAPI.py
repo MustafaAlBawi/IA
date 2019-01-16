@@ -135,14 +135,17 @@ class CalendarAPI(object):
                 day = first_day
                 while day != last_day + timedelta(days=1):
                     for hour in range(0, 24): 
-                        cur_time = (day + timedelta(hours=hour)) 
+                        cur_time_stamp = (day + timedelta(hours=hour)) 
+                        cur_time = ("'" + str(cur_time_stamp.date()) + " " + str(cur_time_stamp.time()) + "'") 
                         if not (day in times_taken):
-                            if ((cur_time) in cur_book): 
-                                print("def fBP, cur_book") 
+                            print(cur_time)
+                            print(cur_book)
+                            if (cur_time in cur_book.values()): 
+                                print("hier gaat ie niet in: format cur_time en cur_book niet gelijk?") 
                                 times_taken[day] = cur_time
                                 priority_sum += cur_book[cur_time] 
                     day += timedelta(days=1)
-                    
+
         print(times_taken, priority_sum)
         return times_taken, priority_sum
 
@@ -156,11 +159,15 @@ class CalendarAPI(object):
                     i = j -1
                     type_times.append(day + timedelta(hours=times_array[i]))
                     if ((possible_timeslots[day][slot] == 0) and (day + timedelta(hours=slot)) == type_times[i]):
-                        res_dict[day + timedelta(hours=slot)] = 0
+                        time_stamp = day + timedelta(hours=slot)
+                        date_time, hour_time = time_stamp.date(), time_stamp.time()
+                        res_dict[str(date_time) + " " + str(hour_time)] = 0
         return res_dict
     
     def conflictFillDict(self, possible_timeslots, times_array, app_priority, cur_max_priority):
         res_dict = dict()
+        return res_dict #temp
+
         for day in possible_timeslots:
             for slot in range(1, len(possible_timeslots[day]) + 1):
                 type_times = []
