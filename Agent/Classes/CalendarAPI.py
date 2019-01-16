@@ -128,7 +128,7 @@ class CalendarAPI(object):
         priority_sum = 0 
         first_day = datetime.datetime(int(appointment.start_date[0:4]), int(appointment.start_date[5:7]), int(appointment.start_date[8:10]))
         last_day = datetime.datetime(int(appointment.end_date[0:4]), int(appointment.end_date[5:7]), int(appointment.end_date[8:10]))
-        
+        print(appointment.amount)
         while len(times_taken) < appointment.amount:
             for book in order_dict:
                 cur_book = conflict_dicts[book] 
@@ -136,14 +136,17 @@ class CalendarAPI(object):
                 while day != last_day + timedelta(days=1):
                     for hour in range(0, 24): 
                         cur_time_stamp = (day + timedelta(hours=hour)) 
-                        cur_time = ("'" + str(cur_time_stamp.date()) + " " + str(cur_time_stamp.time()) + "'") 
+                        #cur_time = ("'" + str(cur_time_stamp.date()) + " " + str(cur_time_stamp.time()) + "'") 
+                        cur_time = (str(cur_time_stamp.date()) + " " + str(cur_time_stamp.time())) 
                         if not (day in times_taken):
-                            print(cur_time)
-                            print(cur_book)
-                            if (cur_time in cur_book.values()): 
-                                print("hier gaat ie niet in: format cur_time en cur_book niet gelijk?") 
-                                times_taken[day] = cur_time
-                                priority_sum += cur_book[cur_time] 
+                            if (cur_time in cur_book.keys()): 
+                                if len(times_taken) == appointment.amount:
+                                    break
+                                else:
+                                    print("hier gaat ie niet in: format cur_time en cur_book niet gelijk?") 
+                                    times_taken[day] = cur_time
+                                    print(len(times_taken))
+                                    priority_sum += cur_book[cur_time]
                     day += timedelta(days=1)
 
         print(times_taken, priority_sum)
