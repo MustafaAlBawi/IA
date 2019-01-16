@@ -41,7 +41,7 @@ def setAttendees(data_array):
     tmp = []
     for attendee in data_array:
         tmp.append(
-            Attendee(attendee['name'], attendee['email'])
+            Attendee(attendee['name'], attendee['email'], attendee['id'])
             )
 
     return tmp

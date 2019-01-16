@@ -1,17 +1,17 @@
 {
     "name": "IntelligentAgent",
     "email": "intelligenttestagent@gmail.com",
-    "type": "drinks",
-    "start_date": "20-01-2019",
-    "end_date": "27-01-2019",
+    "type": "coffee",
+    "start_date": "2019-01-20T00:00:00.00Z",
+    "end_date": "2019-01-28T00:00:00.00Z",
     "priority": "2",
-    "Times": "1",
+    "amount": "1",
     "attendees": [
         {
             "name": "Euan",
             "email": "euanw93@gmail.com",
             "id":   "u71hc7k7a9tsh90b1ch4d5d4c8@group.calendar.google.com"
-        }
+        },
         {
             "name": "IntelligentAgent",
             "email":  "intelligenttestagent@gmail.com",
