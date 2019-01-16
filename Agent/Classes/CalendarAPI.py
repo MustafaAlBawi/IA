@@ -17,6 +17,9 @@ class CalendarAPI(object):
         self.store = file.Storage('token.json')
         self.creds = self.store.get()
         self.checkCreds(self.creds)
+        if not self.creds or self.creds.invalid:
+            self.flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
+            self.creds = tools.run_flow(self.flow, store)
         self.service = build('calendar', 'v3', http=self.creds.authorize(Http()))
         self.now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
         # TODO:
@@ -97,18 +100,35 @@ class CalendarAPI(object):
         type_times = appointment.getTypeTimes()
         day_parts = appointment.getDayParts()
 
-        conflict_dict = { # moet gevuld worden om beste keuze te kunnen gaan maken
+        conflict_dicts_array = [ # moet gevuld worden om beste keuze te kunnen gaan maken
         # gevuld adhv ontology
             "no_conflict": self.noConflictFillDict(possible_timeslots, type_times), 
             "nc_part_day": self.noConflictFillDict(possible_timeslots, day_parts),
-            "priority_conflict": self.conflictFillDict(possible_timeslots, type_times, appointment.getPriority()),
+            "priority_1_conflict": self.conflictFillDict(possible_timeslots, type_times, appointment.getPriority()),
             "pc_part_day": self.conflictFillDict(possible_timeslots, day_parts, appointment.getPriority())
-        }
+        ]
         #TODO:
         ## probeer per dict alles in te plannen
         print(conflict_dict["no_conflict"])
         return possible_timeslots # temp
 
+    def findBestPlanning(self, conflict_dicts_array, appointment, total_counted_priors):  
+        times_taken = list() 
+        priority_sum = 0 ## Maar hoe gaan we de laagste overall score vinden????? 
+        ##  
+ 
+        while len(times_taken) < appointment.amount: 
+            for book in dict_order: 
+                times_taken.clear() 
+                cur_book = conflict_dicts[book] 
+                day = appointment.start_date 
+                while day != appointment.end_date + 1: 
+                    for hour in range(0, 24): 
+                        cur_time = (day + timedelta(hours=hour)) 
+                        if ((cur_time) in cur_book) and not (cur_time in times_taken): 
+                            times_taken.append(cur_time) 
+                            priority_sum += cur_book[cur_time] 
+                    day += 1 
 
     def noConflictFillDict(self, possible_timeslots, times_array):
         res_dict = dict()
