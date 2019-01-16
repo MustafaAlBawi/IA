@@ -47,32 +47,6 @@ def setAttendees(data_array):
     return tmp
 
 """
-Do stuff with ontology
-"""
-def getTypeTimes(appointment_type):
-    type_times = onto[appointment_type].has_time
-    return type_times
-
-def getDayParts(appointment_type):
-    type_day_parts = []
-
-    if "Night" in onto[appointment_type].has_part_of_day:
-        for i in np.arange(0, 6, 1):
-            type_day_parts.extend((i*60))
-    if "Morning" in onto[appointment_type].has_part_of_day:
-            for i in np.arange(6, 12, 1):
-                type_day_parts.extend((i*60))
-    if "Afternoon" in onto[appointment_type].has_part_of_day:
-        for i in np.arange(12, 18, 1):
-            type_day_parts.extend((i*60))
-    if "Evening" in onto[appointment_type].has_part_of_day:
-        for i in np.arange(18, 23, 1):
-            type_day_parts.extend((i*60))
-
-    return type_day_parts    
-
-getTypeTimes("Practice")
-"""
 Look for best Date and Time to set appointment
 """
 def searchPotentialTimes(appointment):
