@@ -100,35 +100,57 @@ class CalendarAPI(object):
         type_times = appointment.getTypeTimes()
         day_parts = appointment.getDayParts()
 
-        conflict_dicts_array = [ # moet gevuld worden om beste keuze te kunnen gaan maken
+        conflict_dicts = { # moet gevuld worden om beste keuze te kunnen gaan maken
         # gevuld adhv ontology
             "no_conflict": self.noConflictFillDict(possible_timeslots, type_times), 
             "nc_part_day": self.noConflictFillDict(possible_timeslots, day_parts),
-            "priority_1_conflict": self.conflictFillDict(possible_timeslots, type_times, appointment.getPriority()),
-            "pc_part_day": self.conflictFillDict(possible_timeslots, day_parts, appointment.getPriority())
-        ]
+            "priority_1_conflict": self.conflictFillDict(possible_timeslots, type_times, appointment.getPriority(), 1),
+            "pc_1_part_day": self.conflictFillDict(possible_timeslots, day_parts, appointment.getPriority(), 1),
+            "priority_2_conflict": self.conflictFillDict(possible_timeslots, type_times, appointment.getPriority(), 2),
+            "pc_2_part_day": self.conflictFillDict(possible_timeslots, day_parts, appointment.getPriority(), 2),
+            "priority_3_conflict": self.conflictFillDict(possible_timeslots, type_times, appointment.getPriority(), 3),
+            "pc_3_part_day": self.conflictFillDict(possible_timeslots, day_parts, appointment.getPriority(), 3),
+            "priority_4_conflict": self.conflictFillDict(possible_timeslots, type_times, appointment.getPriority(), 4),
+            "pc_4_part_day": self.conflictFillDict(possible_timeslots, day_parts, appointment.getPriority(), 4)
+        }
+        order_dict = ["no_conflict", "nc_part_day", "priority_1_conflict", "pc_1_part_day", \
+            "priority_2_conflict", "pc_2_part_day", "priority_3_conflict", "pc_3_part_day", \
+            "priority_4_conflict", "pc_4_part_day"]
         #TODO:
         ## probeer per dict alles in te plannen
-        print(conflict_dict["no_conflict"])
-        return possible_timeslots # temp
+        #print(conflict_dicts["no_conflict"])
+        returned_times_priorsum = self.findBestPlanning(possible_timeslots, conflict_dicts, order_dict, appointment)
 
-    def findBestPlanning(self, conflict_dicts_array, appointment, total_counted_priors):  
-        times_taken = list() 
-        priority_sum = 0 ## Maar hoe gaan we de laagste overall score vinden????? 
-        ##  
- 
-        while len(times_taken) < appointment.amount: 
-            for book in dict_order: 
-                times_taken.clear() 
+        return returned_times_priorsum # temp
+
+    def findBestPlanning(self, possible_timeslots, conflict_dicts, order_dict, appointment):
+        times_taken = dict() 
+        priority_sum = 0 
+        first_day = datetime.datetime(int(appointment.start_date[0:4]), int(appointment.start_date[5:7]), int(appointment.start_date[8:10]))
+        last_day = datetime.datetime(int(appointment.end_date[0:4]), int(appointment.end_date[5:7]), int(appointment.end_date[8:10]))
+        print(appointment.amount)
+        while len(times_taken) < appointment.amount:
+            for book in order_dict:
                 cur_book = conflict_dicts[book] 
-                day = appointment.start_date 
-                while day != appointment.end_date + 1: 
+                day = first_day
+                while day != last_day + timedelta(days=1):
                     for hour in range(0, 24): 
-                        cur_time = (day + timedelta(hours=hour)) 
-                        if ((cur_time) in cur_book) and not (cur_time in times_taken): 
-                            times_taken.append(cur_time) 
-                            priority_sum += cur_book[cur_time] 
-                    day += 1 
+                        cur_time_stamp = (day + timedelta(hours=hour)) 
+                        #cur_time = ("'" + str(cur_time_stamp.date()) + " " + str(cur_time_stamp.time()) + "'") 
+                        cur_time = (str(cur_time_stamp.date()) + " " + str(cur_time_stamp.time())) 
+                        if not (day in times_taken):
+                            if (cur_time in cur_book.keys()): 
+                                if len(times_taken) == appointment.amount:
+                                    break
+                                else:
+                                    print("hier gaat ie niet in: format cur_time en cur_book niet gelijk?") 
+                                    times_taken[day] = cur_time
+                                    print(len(times_taken))
+                                    priority_sum += cur_book[cur_time]
+                    day += timedelta(days=1)
+
+        print(times_taken, priority_sum)
+        return times_taken, priority_sum
 
     def noConflictFillDict(self, possible_timeslots, times_array):
         res_dict = dict()
@@ -140,11 +162,15 @@ class CalendarAPI(object):
                     i = j -1
                     type_times.append(day + timedelta(hours=times_array[i]))
                     if ((possible_timeslots[day][slot] == 0) and (day + timedelta(hours=slot)) == type_times[i]):
-                        res_dict[day + timedelta(hours=slot)] = 0
+                        time_stamp = day + timedelta(hours=slot)
+                        date_time, hour_time = time_stamp.date(), time_stamp.time()
+                        res_dict[str(date_time) + " " + str(hour_time)] = 0
         return res_dict
     
-    def conflictFillDict(self, possible_timeslots, times_array, priority):
+    def conflictFillDict(self, possible_timeslots, times_array, app_priority, cur_max_priority):
         res_dict = dict()
+        return res_dict #temp
+
         for day in possible_timeslots:
             for slot in range(1, len(possible_timeslots[day]) + 1):
                 type_times = []
@@ -152,7 +178,8 @@ class CalendarAPI(object):
                 for j in range(len(times_array)):
                     i = j -1
                     type_times.append(day + timedelta(hours=times_array[i]))
-                    if ((possible_timeslots[day][slot] != 0) and (possible_timeslots[day][slot] < int(priority))):
+                    if ((possible_timeslots[day][slot] != 0) and (possible_timeslots[day][slot] < int(app_priority)) and \
+                    (possible_timeslots[day][slot] <= cur_max_priority)):
                         if (day + timedelta(hours=slot)) == type_times[i]:
                             res_dict[day + timedelta(hours=slot)] = possible_timeslots[day][slot]
         return res_dict
