@@ -35,19 +35,20 @@ class Appointment:
         return self.priority
     
     def getTypeTimes(self):
-        type_times = onto[self.type].has_time
+
+        type_times = onto[self.type.title()].has_time
         return type_times
 
     def getDayParts(self):
         type_day_parts = []
 
-        if "Night" in onto[self.type].has_part_of_day:
+        if "Night" in onto[self.type.title()].has_part_of_day:
             type_day_parts.extend([0,1,2,3,4,5])
-        if "Morning" in onto[self.type].has_part_of_day:
+        if "Morning" in onto[self.type.title()].has_part_of_day:
             type_day_parts.extend([6,7,8,9,10,11])
-        if "Afternoon" in onto[self.type].has_part_of_day:
+        if "Afternoon" in onto[self.type.title()].has_part_of_day:
             type_day_parts.extend([12,13,14,15,16,17])
-        if "Evening" in onto[self.type].has_part_of_day:
+        if "Evening" in onto[self.type.title()].has_part_of_day:
             type_day_parts.extend([18,19,20,21,22,23])
 
         return type_day_parts    

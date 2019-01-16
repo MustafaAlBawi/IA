@@ -36,7 +36,7 @@ class CalendarAPI(object):
         index = range(1, 25) # uren in een dag
         return pd.DataFrame(filler, index=index, columns=columns)
 
-    def loadCalendarEvents(self, time_min, time_max, calendar_id = 'primary', single_events = True, order_by = 'startTime'):
+    def loadCalendarEvents(self, df, time_min, time_max, calendar_id = 'primary', single_events = True, order_by = 'startTime'):
         events = self.service.events().list(
             timeMin = time_min, 
             timeMax = time_max,
@@ -46,8 +46,6 @@ class CalendarAPI(object):
             orderBy = order_by
             ).execute().get('items', [])
         owner = "EuanTemp"
-
-        df = self.createDateDataFrame(time_min, time_max, 0)
 
         if not events:
             print('No upcoming events found.')
@@ -61,13 +59,13 @@ class CalendarAPI(object):
                 event['end'].get('dateTime', event['start'].get('date'))
                 )
 
-            print(event)
             try:
                 event['description']
             except KeyError:
                 priority = 1
             else:
-                priority = event['description'][10]
+                print(event['description'])
+                priority = int(event['description'][9])
 
             duration_in_hours = int(round(divmod((end - start).total_seconds(), 3600)[0]))
 
