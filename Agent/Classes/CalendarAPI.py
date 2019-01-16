@@ -12,14 +12,14 @@ class CalendarAPI(object):
     """
     Class that serves the google calendar API
     """
-    def __init__(self, scope='readonly'): # readonly moet weg, want niet alleen lezen maar ook schrijven in calendar
-        self.SCOPES = 'https://www.googleapis.com/auth/calendar.' + scope
+    def __init__(self): # readonly moet weg, want niet alleen lezen maar ook schrijven in calendar
+        self.SCOPES = 'https://www.googleapis.com/auth/calendar'
         self.store = file.Storage('token.json')
         self.creds = self.store.get()
         self.checkCreds(self.creds)
         if not self.creds or self.creds.invalid:
-            self.flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
-            self.creds = tools.run_flow(self.flow, store)
+            self.flow = client.flow_from_clientsecrets('credentials.json', self.SCOPES)
+            self.creds = tools.run_flow(self.flow, self.store)
         self.service = build('calendar', 'v3', http=self.creds.authorize(Http()))
         self.now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
         # TODO:
@@ -60,9 +60,14 @@ class CalendarAPI(object):
             end = parser.parse(
                 event['end'].get('dateTime', event['start'].get('date'))
                 )
-            if event['summary'].startswith("priority:#"):
-                priority = event['summary'][10]
-            else: priority = 1
+
+            print(event)
+            try:
+                event['description']
+            except KeyError:
+                priority = 1
+            else:
+                priority = event['description'][10]
 
             duration_in_hours = int(round(divmod((end - start).total_seconds(), 3600)[0]))
 
@@ -184,3 +189,40 @@ class CalendarAPI(object):
                             res_dict[day + timedelta(hours=slot)] = possible_timeslots[day][slot]
         return res_dict
         
+    def writeToCalendar(self, best_planning, type, priority, duration = 1):
+        best_planning = str(best_planning[0])
+        date = best_planning
+        time = int(best_planning[51:53])
+        endTime = int(time) + duration
+
+        startEv = datetime.datetime.combine(datetime.date(int(date[40:44]),int(date[45:47]),int(date[48:50])), datetime.time(time, 0, 0))
+        endEv = datetime.datetime.combine(datetime.date(int(date[40:44]),int(date[45:47]),int(date[48:50])), datetime.time(endTime, 0, 0))
+
+        startEv = str(startEv.date()) + 'T' + str(startEv.time()) + 'Z'
+        endEv = str(endEv.date()) + 'T' + str(endEv.time()) + 'Z'
+        print(startEv, endEv)
+
+        # Insert event to google calendar
+        event = {
+            'summary': type,
+            'location': '',
+            'description': 'priority:' + priority,
+            'start': {
+                'dateTime': startEv,
+                'timeZone': 'Europe/Amsterdam',
+            },
+            'end': {
+                'dateTime': endEv,
+                'timeZone': 'Europe/Amsterdam',
+            },
+            'recurrence': [
+            ],
+            'attendees': [
+            ],
+            'reminders': {
+                'useDefault': True,
+
+            },
+        }
+
+        event = self.service.events().insert(calendarId='primary', body=event).execute()
