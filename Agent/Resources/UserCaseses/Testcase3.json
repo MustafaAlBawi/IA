@@ -9,11 +9,14 @@
     "attendees": [
         {
             "name": "Euan",
-            "email": "euanw93@gmail.com"
+            "email": "euanw93@gmail.com",
+            "id":   "u71hc7k7a9tsh90b1ch4d5d4c8@group.calendar.google.com"
         }
         {
             "name": "IntelligentAgent",
-            "email":  "intelligenttestagent@gmail.com"
+            "email":  "intelligenttestagent@gmail.com",
+            "id": "primary"
+
         }
     ]
 }

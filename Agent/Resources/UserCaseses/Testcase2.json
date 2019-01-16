@@ -9,7 +9,8 @@
     "attendees": [
         {
             "name": "IntelligentAgent",
-            "email":  "intelligenttestagent@gmail.com"
+            "email":  "intelligenttestagent@gmail.com",
+            "id":   "primary"
         }
     ]
 }
