@@ -28,10 +28,12 @@ class CalendarAPI(object):
     
     def checkCreds(self, creds):
         if not creds or creds.invalid:
-            flow = client.flow_from_clientsecrets('./Agent/credentials.json', self.SCOPES)
+            flow = client.flow_from_clientsecrets('C:/Users/tycho/Desktop/tgGit/Agentcredentials.json', self.SCOPES)
             creds = tools.run_flow(flow, self.store)
 
     def createDateDataFrame(self, start_date, end_date, filler):
+        endDay = int(end_date[8:10]) - 1
+        end_date = end_date[:8] + str(endDay) + end_date[10:]
         columns = pd.date_range(start=start_date, end=end_date, freq='D')
         index = range(1, 25) # uren in een dag
         return pd.DataFrame(filler, index=index, columns=columns)
@@ -40,8 +42,7 @@ class CalendarAPI(object):
         events = self.service.events().list(
             timeMin = time_min, 
             timeMax = time_max,
-            calendarId = calendar_id, 
-            maxResults = 10,
+            calendarId = calendar_id,
             singleEvents = single_events,
             orderBy = order_by
             ).execute().get('items', [])
@@ -58,7 +59,7 @@ class CalendarAPI(object):
             end = parser.parse(
                 event['end'].get('dateTime', event['start'].get('date'))
                 )
-
+            print(event)
             try:
                 event['description']
             except KeyError:
@@ -119,40 +120,44 @@ class CalendarAPI(object):
         order_dict = ["no_conflict", "nc_part_day", "priority_1_conflict", "pc_1_part_day", \
             "priority_2_conflict", "pc_2_part_day", "priority_3_conflict", "pc_3_part_day", \
             "priority_4_conflict", "pc_4_part_day"]
-        #TODO:
-        ## probeer per dict alles in te plannen
-        #print(conflict_dicts["no_conflict"])
+
         returned_times_priorsum = self.findBestPlanning(possible_timeslots, conflict_dicts, order_dict, appointment)
 
         return returned_times_priorsum # temp
 
     def findBestPlanning(self, possible_timeslots, conflict_dicts, order_dict, appointment):
-        times_taken = dict() 
-        priority_sum = 0 
-        first_day = datetime.datetime(int(appointment.start_date[0:4]), int(appointment.start_date[5:7]), int(appointment.start_date[8:10]))
-        last_day = datetime.datetime(int(appointment.end_date[0:4]), int(appointment.end_date[5:7]), int(appointment.end_date[8:10]))
-        print(appointment.amount)
-        while len(times_taken) < appointment.amount:
-            for book in order_dict:
-                cur_book = conflict_dicts[book] 
-                day = first_day
-                while day != last_day + timedelta(days=1):
-                    for hour in range(0, 24): 
-                        cur_time_stamp = (day + timedelta(hours=hour)) 
-                        #cur_time = ("'" + str(cur_time_stamp.date()) + " " + str(cur_time_stamp.time()) + "'") 
-                        cur_time = (str(cur_time_stamp.date()) + " " + str(cur_time_stamp.time())) 
-                        if not (day in times_taken):
-                            if (cur_time in cur_book.keys()): 
-                                if len(times_taken) == appointment.amount:
-                                    break
-                                else:
-                                    print("hier gaat ie niet in: format cur_time en cur_book niet gelijk?") 
-                                    times_taken[day] = cur_time
-                                    print(len(times_taken))
-                                    priority_sum += cur_book[cur_time]
-                    day += timedelta(days=1)
+        times_taken = dict()
+        priority_sum = 0
+        first_day = datetime.datetime(int(appointment.start_date[0:4]), int(appointment.start_date[5:7]),
+                                      int(appointment.start_date[8:10]))
+        last_day = datetime.datetime(int(appointment.end_date[0:4]), int(appointment.end_date[5:7]),
+                                     int(appointment.end_date[8:10]))
 
-        print(times_taken, priority_sum)
+        for book in order_dict:
+            cur_book = conflict_dicts[book]
+            day = first_day
+            while day != last_day + timedelta(days=1):
+                for hour in range(0, 24):
+                    cur_time_stamp = (day + timedelta(hours=hour))
+                    cur_time = (str(cur_time_stamp.date()) + " " + str(cur_time_stamp.time()))
+                    if len(times_taken) == appointment.amount:
+                        break
+                    elif not (day in times_taken) and (cur_time in cur_book.keys()):
+                        print(appointment.duration)
+                        extra_hours = (appointment.duration - 1)
+                        for extra in range(extra_hours):
+                            next_hour_stamp = cur_time_stamp + timedelta(hours=extra)
+                            next_hour = (str(next_hour_stamp.date()) + " " + str(next_hour_stamp.time()))
+                            if (next_hour in cur_book.keys()):
+                                pass
+                            else:
+                                break
+                        times_taken[day] = cur_time
+                        print(len(times_taken))
+                        priority_sum += cur_book[cur_time]
+                day += timedelta(days=1)
+
+        print('best time:',times_taken, priority_sum)
         return times_taken, priority_sum
 
     def noConflictFillDict(self, possible_timeslots, times_array):
@@ -187,14 +192,19 @@ class CalendarAPI(object):
                             res_dict[day + timedelta(hours=slot)] = possible_timeslots[day][slot]
         return res_dict
         
-    def writeToCalendar(self, best_planning, type, priority, duration = 1):
+    def writeToCalendar(self, best_planning, type, priority, duration):
         best_planning = str(best_planning[0])
         date = best_planning
-        time = int(best_planning[51:53])
-        endTime = int(time) + duration
+        time = int(best_planning[51:53]) - 1
+        if(int(time) + duration < 23):
+            endTime = int(time) + duration
+            endDay = int(date[48:50])
+        else:
+            endTime = int(time) + duration - 24
+            endDay = int(date[48:50]) + 1
 
         startEv = datetime.datetime.combine(datetime.date(int(date[40:44]),int(date[45:47]),int(date[48:50])), datetime.time(time, 0, 0))
-        endEv = datetime.datetime.combine(datetime.date(int(date[40:44]),int(date[45:47]),int(date[48:50])), datetime.time(endTime, 0, 0))
+        endEv = datetime.datetime.combine(datetime.date(int(date[40:44]),int(date[45:47]),endDay), datetime.time(endTime, 0, 0))
 
         startEv = str(startEv.date()) + 'T' + str(startEv.time()) + 'Z'
         endEv = str(endEv.date()) + 'T' + str(endEv.time()) + 'Z'
@@ -204,7 +214,6 @@ class CalendarAPI(object):
         event = {
             'summary': type,
             'location': '',
-            'description': 'priority:' + priority,
             'start': {
                 'dateTime': startEv,
                 'timeZone': 'Europe/Amsterdam',

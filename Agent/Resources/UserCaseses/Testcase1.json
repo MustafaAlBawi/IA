@@ -6,6 +6,7 @@
     "end_date": "2019-01-27T00:00:00.00Z",
     "priority": "2",
     "amount": "1",
+    "duration": "2",
     "attendees": [
         {
             "name": "IntelligentAgent",

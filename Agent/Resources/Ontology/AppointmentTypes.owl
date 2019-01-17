@@ -351,11 +351,11 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFamily"/>
         <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Family"/>
         <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friends"/>
-        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1020</Afternoon>
-        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1080</Afternoon>
-        <Afternoon rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">960</Afternoon>
-        <Evening rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1140</Evening>
-        <Evening rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1200</Evening>
+        <has_part_of_day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Afternoon</has_part_of_day>
+        <has_part_of_day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evening</has_part_of_day>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">14</has_time>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</has_time>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">21</has_time>
     </owl:NamedIndividual>
     
 
@@ -380,6 +380,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Cinema">
         <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFriends"/>
+        <has_part_of_day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Afternoon</has_part_of_day>
+        <has_part_of_day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evening</has_part_of_day>
     </owl:NamedIndividual>
     
 
@@ -396,14 +398,11 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Coffee">
         <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFriends"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#CoffeeMeeting -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#CoffeeMeeting">
-        <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Meetings"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Colleague"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friends"/>
+        <has_part_of_day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Morning</has_part_of_day>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</has_time>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</has_time>
     </owl:NamedIndividual>
     
 
@@ -428,6 +427,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Dinner">
         <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withClients"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Family"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friends"/>
+        <has_part_of_day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evening</has_part_of_day>
     </owl:NamedIndividual>
     
 
@@ -437,6 +439,9 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Drinks">
         <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withColleagues"/>
         <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friends"/>
+        <has_part_of_day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evening</has_part_of_day>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">21</has_time>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">22</has_time>
     </owl:NamedIndividual>
     
 
@@ -532,6 +537,12 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Lunch">
         <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Other"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withColleagues"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Family"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friends"/>
+        <has_part_of_day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Afternoon</has_part_of_day>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</has_time>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">13</has_time>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">14</has_time>
     </owl:NamedIndividual>
     
 
@@ -546,6 +557,11 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Party">
         <rdf:type rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#withFriends"/>
+        <withPeople rdf:resource="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#Friends"/>
+        <has_part_of_day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evening</has_part_of_day>
+        <has_part_of_day rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Night</has_part_of_day>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">22</has_time>
+        <has_time rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">23</has_time>
     </owl:NamedIndividual>
     
 
@@ -661,5 +677,5 @@
 
 
 
-<!-- Generated by the OWL API (version 4.5.7.2018-12-02T02:23:35Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.6.2018-09-06T00:27:41Z) https://github.com/owlcs/owlapi -->
 

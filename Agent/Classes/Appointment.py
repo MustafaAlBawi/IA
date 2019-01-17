@@ -1,19 +1,20 @@
 from owlready2 import *
 import numpy as np
 
-onto = get_ontology('./Agent/Resources/Ontology/AppointmentTypes.owl')
+onto = get_ontology('file://C:/Users/tycho/Desktop/tgGit/Agent/Resources/Ontology/AppointmentTypes.owl')
 onto.load()
 
 class Appointment:
-    def __init__(self, name = "", type_ = "", start_date = None, end_date = None, priority=-1, amount_to_plan = 1, attendees = []):
+    def __init__(self, name = "", type_ = "", start_date = None, end_date = None, priority=-1, amount_to_plan = 1, duration = 1, attendees = []):
         self.name = name
         self.type = type_
         self.start_date = start_date
         self.end_date = end_date
-        self.amount = int(amount_to_plan)
-        self.time_slots = []
         self.priority = priority
+        self.amount = int(amount_to_plan)
+        self.duration = int(duration)
         self.attendees = attendees
+        self.time_slots = []
 
     """ get class functions """
     def getName(self):

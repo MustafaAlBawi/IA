@@ -14,11 +14,16 @@ def start():
     print("Agent running.")
     # load the usercase
     appointment = helpers.loadUsercase('Testcase1')
-
     # Create a hook and set load events into a dataframe
     ApiHook = CalendarAPI()
-    #df = ApiHook.loadCalendarEvents('2019-01-14T00:00:00.00Z', '2019-03-17T00:00:00.00Z')
-    df = ApiHook.loadCalendarEvents(appointment.start_date, appointment.end_date)
+
+    df = ApiHook.createDateDataFrame(appointment.start_date, appointment.end_date, 0)
+
+    for i in range(0, len(appointment.attendees)):
+        print(appointment.attendees[i].id)
+        df = ApiHook.loadCalendarEvents(df, appointment.start_date, appointment.end_date, appointment.attendees[i].id)
+    print(df)
+
     best_planning = ApiHook.findPosibleEventSpace(df, appointment)
-    ApiHook.writeToCalendar(best_planning, appointment.type, appointment.priority)
-    #print(possible_df.any())
+    print('best_planning:',best_planning)
+    ApiHook.writeToCalendar(best_planning, appointment.type, appointment.priority, appointment.duration)
