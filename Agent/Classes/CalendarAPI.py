@@ -85,22 +85,12 @@ class CalendarAPI(object):
 
         return df
         
-    def writeToCalendar(self, best_planning, type, priority, duration):
-        best_planning = str(best_planning[0])
-        date = best_planning
-        time = int(best_planning[11:13]) - 1
-        if(int(time) + duration < 23):
-            endTime = int(time) + duration
-            endDay = int(date[8:10])
-        else:
-            endTime = int(time) + duration - 24
-            endDay = int(date[8:10]) + 1
+    def writeToCalendar(self, best_planning, type, priority, duration, id):
+        best_planning = parser.parse(best_planning)
 
-        startEv = datetime.datetime.combine(datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10])), datetime.time(time, 0, 0))
-        endEv = datetime.datetime.combine(datetime.date(int(date[0:4]),int(date[5:7]),endDay), datetime.time(endTime, 0, 0))
-
-        startEv = str(startEv.date()) + 'T' + str(startEv.time()) + 'Z'
-        endEv = str(endEv.date()) + 'T' + str(endEv.time()) + 'Z'
+        end_best_planning =best_planning + timedelta(hours=duration)
+        startEv = str(best_planning.date()) + 'T' + str(best_planning.time()) + 'Z'
+        endEv = str(end_best_planning.date()) + 'T' + str(end_best_planning.time()) + 'Z'
 
         # Insert event to google calendar
         event = {

@@ -37,7 +37,7 @@ class Planner(object):
             "pc_4_part_day"
             ]
             
-        self.best_plan = self.findBestPlanning(self.highest_df, self.conflict_dicts, self.order_list, self.appointment)
+        self.best_planning = self.findBestPlanning(self.highest_df, self.conflict_dicts, self.order_list, self.appointment)
 
     def getHighestPriority(self, all_appointments_df, possible_timeslots_df, appointment):
         for day in all_appointments_df:
