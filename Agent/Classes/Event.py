@@ -9,8 +9,9 @@ class Event(object):
     def add_owner(self, owner = None, priority = 1):
         if self.highest < priority:
             self.highest = priority
-            
-        self.owners_priorities = self.owners_priorities.extend([owner, priority])
+
+        self.owners_priorities[0] = owner
+        self.owners_priorities[1] = priority
 
     def getOwnersPriorities(self):
         return self.owners_priorities

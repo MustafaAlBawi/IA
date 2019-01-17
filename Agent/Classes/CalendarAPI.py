@@ -81,7 +81,8 @@ class CalendarAPI(object):
                 if df[start.date()][first_hour + hour] == 0:
                     event_to_set = Event(owner, priority)
                     df.loc[(first_hour + hour), start.date()] = event_to_set
-                else: df[start.date()][first_hour + hour].add_owner(owner, priority)
+                else:
+                    df.loc[first_hour + hour, start.date()].add_owner(owner, priority)
 
         return df
         
