@@ -1,7 +1,7 @@
 from owlready2 import *
 import numpy as np
 
-onto = get_ontology('file://C:/Users/tycho/Desktop/tgGit/Agent/Resources/Ontology/AppointmentTypes.owl')
+onto = get_ontology('./Agent/Resources/Ontology/AppointmentTypes.owl')
 onto.load()
 
 class Appointment:

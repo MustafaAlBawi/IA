@@ -6,12 +6,13 @@
     "end_date": "2019-01-27T00:00:00.00Z",
     "priority": "2",
     "amount": "2",
+    "duration": "1",
     "attendees": [
         {
             "name": "Euan",
             "email": "euanw93@gmail.com",
             "id":   "u71hc7k7a9tsh90b1ch4d5d4c8@group.calendar.google.com"
-        }
+        },
         {
             "name": "IntelligentAgent",
             "email":  "intelligenttestagent@gmail.com",

@@ -13,7 +13,7 @@ from Classes.Event import Event
 def start():
     print("Agent running.")
     # load the usercase
-    appointment = helpers.loadUsercase('Testcase1')
+    appointment = helpers.loadUsercase('Testcase5')
     # Create a hook and set load events into a dataframe
     ApiHook = CalendarAPI()
 
@@ -25,5 +25,8 @@ def start():
     print(df)
 
     best_planning = ApiHook.findPosibleEventSpace(df, appointment)
-    print('best_planning:',best_planning)
-    ApiHook.writeToCalendar(best_planning, appointment.type, appointment.priority, appointment.duration)
+    best_planning = best_planning[0]
+    for i in range(0, len(appointment.attendees)):
+        for date, time in best_planning.items():
+            id = appointment.attendees[i].id
+            ApiHook.writeToCalendar(time, appointment.type, appointment.priority, appointment.duration, id)

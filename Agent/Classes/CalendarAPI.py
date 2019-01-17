@@ -7,6 +7,7 @@ from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
 import pandas as pd
+import pprint
 
 class CalendarAPI(object):
     """
@@ -28,7 +29,7 @@ class CalendarAPI(object):
     
     def checkCreds(self, creds):
         if not creds or creds.invalid:
-            flow = client.flow_from_clientsecrets('C:/Users/tycho/Desktop/tgGit/Agentcredentials.json', self.SCOPES)
+            flow = client.flow_from_clientsecrets('./Agent/credentials.json', self.SCOPES)
             creds = tools.run_flow(flow, self.store)
 
     def createDateDataFrame(self, start_date, end_date, filler):
@@ -59,14 +60,14 @@ class CalendarAPI(object):
             end = parser.parse(
                 event['end'].get('dateTime', event['start'].get('date'))
                 )
-            print(event)
+
             try:
                 event['description']
             except KeyError:
                 priority = 1
             else:
                 print(event['description'])
-                priority = int(event['description'][9])
+                priority = int(event['description'][10])
 
             duration_in_hours = int(round(divmod((end - start).total_seconds(), 3600)[0]))
 
@@ -122,7 +123,6 @@ class CalendarAPI(object):
             "priority_4_conflict", "pc_4_part_day"]
 
         returned_times_priorsum = self.findBestPlanning(possible_timeslots, conflict_dicts, order_dict, appointment)
-
         return returned_times_priorsum # temp
 
     def findBestPlanning(self, possible_timeslots, conflict_dicts, order_dict, appointment):
@@ -192,19 +192,19 @@ class CalendarAPI(object):
                             res_dict[day + timedelta(hours=slot)] = possible_timeslots[day][slot]
         return res_dict
         
-    def writeToCalendar(self, best_planning, type, priority, duration):
-        best_planning = str(best_planning[0])
+    def writeToCalendar(self, best_planning, type, priority, duration,id):
+        best_planning = str(best_planning)
         date = best_planning
-        time = int(best_planning[51:53]) - 1
+        time = int(best_planning[11:13]) - 1
         if(int(time) + duration < 23):
             endTime = int(time) + duration
-            endDay = int(date[48:50])
+            endDay = int(date[8:10])
         else:
             endTime = int(time) + duration - 24
-            endDay = int(date[48:50]) + 1
+            endDay = int(date[8:10]) + 1
 
-        startEv = datetime.datetime.combine(datetime.date(int(date[40:44]),int(date[45:47]),int(date[48:50])), datetime.time(time, 0, 0))
-        endEv = datetime.datetime.combine(datetime.date(int(date[40:44]),int(date[45:47]),endDay), datetime.time(endTime, 0, 0))
+        startEv = datetime.datetime.combine(datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10])), datetime.time(time, 0, 0))
+        endEv = datetime.datetime.combine(datetime.date(int(date[0:4]),int(date[5:7]),endDay), datetime.time(endTime, 0, 0))
 
         startEv = str(startEv.date()) + 'T' + str(startEv.time()) + 'Z'
         endEv = str(endEv.date()) + 'T' + str(endEv.time()) + 'Z'
@@ -214,6 +214,7 @@ class CalendarAPI(object):
         event = {
             'summary': type,
             'location': '',
+            'description': 'priority:#' + priority,
             'start': {
                 'dateTime': startEv,
                 'timeZone': 'Europe/Amsterdam',
@@ -232,4 +233,4 @@ class CalendarAPI(object):
             },
         }
 
-        event = self.service.events().insert(calendarId='primary', body=event).execute()
+        event = self.service.events().insert(calendarId=id, body=event).execute()

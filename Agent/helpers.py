@@ -20,7 +20,7 @@ onto.load()
 Load a usercase from the UserCases dir named `name`.
 """
 def loadUsercase(name):
-    with open('C:/Users/tycho/Desktop/tgGit/Agent/Resources/UserCaseses/' + name + '.json') as f:
+    with open('./Agent/Resources/UserCaseses/' + name + '.json') as f:
         data = json.load(f)
         
     #TODO: add amount of appointments to plan
