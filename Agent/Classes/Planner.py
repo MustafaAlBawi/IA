@@ -13,15 +13,15 @@ class Planner(object):
         
         self.conflict_dicts = OrderedDict([
             ("no_conflict", self.noConflictFillDict(self.highest_df, appointment.getTypeTimes(), appointment.priority)), 
-            ("nc_part_day", self.noConflictFillDict(self.highest_df, appointment.getClassTimes(), appointment.priority)),
+            ("nc_part_day", self.noConflictFillDict(self.highest_df, appointment.getDayParts(), appointment.priority)),
             ("priority_1_conflict", self.conflictFillDict(self.highest_df, appointment.getTypeTimes(), appointment.priority, 1)),
-            ("pc_1_part_day", self.conflictFillDict(self.highest_df, appointment.getClassTimes(), appointment.priority, 1)),
+            ("pc_1_part_day", self.conflictFillDict(self.highest_df, appointment.getDayParts(), appointment.priority, 1)),
             ("priority_2_conflict", self.conflictFillDict(self.highest_df, appointment.getTypeTimes(), appointment.priority, 2)),
-            ("pc_2_part_day", self.conflictFillDict(self.highest_df, appointment.getClassTimes(), appointment.priority, 2)),
+            ("pc_2_part_day", self.conflictFillDict(self.highest_df, appointment.getDayParts(), appointment.priority, 2)),
             ("priority_3_conflict", self.conflictFillDict(self.highest_df, appointment.getTypeTimes(), appointment.priority, 3)),
-            ("pc_3_part_day", self.conflictFillDict(self.highest_df, appointment.getClassTimes(), appointment.priority, 3)),
+            ("pc_3_part_day", self.conflictFillDict(self.highest_df, appointment.getDayParts(), appointment.priority, 3)),
             ("priority_4_conflict", self.conflictFillDict(self.highest_df, appointment.getTypeTimes(), appointment.priority, 4)),
-            ("pc_4_part_day", self.conflictFillDict(self.highest_df, appointment.getClassTimes(), appointment.priority, 4))
+            ("pc_4_part_day", self.conflictFillDict(self.highest_df, appointment.getDayParts(), appointment.priority, 4))
         ])
         # Set the order of priority dict.
         self.order_list = [
