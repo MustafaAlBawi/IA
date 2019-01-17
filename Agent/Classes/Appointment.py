@@ -10,7 +10,7 @@ class Appointment:
         self.type = type_
         self.start_date = start_date
         self.end_date = end_date
-        self.priority = priority
+        self.priority = int(priority)
         self.amount = int(amount_to_plan)
         self.duration = int(duration)
         self.attendees = attendees
@@ -36,9 +36,17 @@ class Appointment:
         return self.priority
     
     def getTypeTimes(self):
-
         type_times = onto[self.type.title()].has_time
         return type_times
+
+    def getClassTimes(self):
+        same_class_times = onto[self.type].__class__.instances()
+        class_times = []
+
+        for _type in same_class_times:
+            class_times.extend(_type.has_time)
+
+        return class_times
 
     def getDayParts(self):
         type_day_parts = []

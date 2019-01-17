@@ -9,11 +9,9 @@ from dateutil import rrule
 from owlready2 import *
 import numpy as np
 import json
-from pprint import pprint
+import pandas as pd
 
-#onto = get_ontology("file://C:/Users/Gebruiker/Documents/Euan/Studie/ArtificialIntelligence/Blok2-2018/IntelligentAgents/Project/IntelAgents-Git/tgGit/Agent/Resources/AppointmentTypes.owl")
-#onto.load()
-onto = get_ontology('file://C:/Users/tycho/Desktop/tgGit/Agent/Resources/Ontology/AppointmentTypes.owl')
+onto = get_ontology('./Agent/Resources/Ontology/AppointmentTypes.owl')
 onto.load()
 
 """
@@ -22,8 +20,7 @@ Load a usercase from the UserCases dir named `name`.
 def loadUsercase(name):
     with open('./Agent/Resources/UserCaseses/' + name + '.json') as f:
         data = json.load(f)
-        
-    #TODO: add amount of appointments to plan
+
     return Appointment(
         data['name'], 
         data['type'], 
@@ -46,20 +43,14 @@ def setAttendees(data_array):
             )
 
     return tmp
-
-"""
-Look for best Date and Time to set appointment
-"""
-def searchPotentialTimes(appointment):
-    attendees_calendars = []
-
-    for attendee in appointment.getAttendees():
-        attendees_calendars.append(
-            CalendarAPI.reader(appointment.start_date, appointment.end_date)
-            )
     
-    
-    #TODO:
-    #appointment_type = str(appointment.getType())
-    #type_times = onto[appointment_type].Time
+"""
+Create a DataFrame
+"""
+def createDateDataFrame(start_date, end_date, filler):
+    endDay = int(end_date[8:10]) - 1
+    end_date = end_date[:8] + str(endDay) + end_date[10:]
+    columns = pd.date_range(start=start_date, end=end_date, freq='D')
+    index = range(1, 25) # uren in een dag
+    return pd.DataFrame(filler, index=index, columns=columns)
 

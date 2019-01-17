@@ -1,6 +1,6 @@
 {
     "name": "IntelligentAgent",
-    "email": "intelligenttestagent@gmail.com",
+    "email": "t.r.c.delange@students.uu.nl",
     "type": "Practice",
     "start_date": "2019-01-20T00:00:00.00Z",
     "end_date": "2019-01-27T00:00:00.00Z",
@@ -10,7 +10,7 @@
     "attendees": [
         {
             "name": "IntelligentAgent",
-            "email":  "intelligenttestagent@gmail.com",
+            "email":  "t.r.c.delange@students.uu.nl",
             "id":   "primary"
         }
     ]
