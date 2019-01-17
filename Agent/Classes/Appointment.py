@@ -83,13 +83,13 @@ class Appointment:
     def getDayParts(self):
         type_day_parts = []
 
-        if "Night" in onto[self.type.title()].hasPartofDay:
+        if onto["Night"] in onto[self.type].hasPartofDay:
             type_day_parts.extend([0,1,2,3,4,5])
-        if "Morning" in onto[self.type.title()].hasPartofDay:
+        if onto["Morning"] in onto[self.type].hasPartofDay:
             type_day_parts.extend([6,7,8,9,10,11])
-        if "Afternoon" in onto[self.type.title()].hasPartofDay:
+        if onto["Afternoon"] in onto[self.type].hasPartofDay:
             type_day_parts.extend([12,13,14,15,16,17])
-        if "Evening" in onto[self.type.title()].hasPartofDay:
+        if onto["Evening"] in onto[self.type].hasPartofDay:
             type_day_parts.extend([18,19,20,21,22,23])
 
         return type_day_parts    
