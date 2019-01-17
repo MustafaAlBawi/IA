@@ -8,7 +8,6 @@ onto.load()
 class Appointment(object):
     def __init__(self, name = "", type_ = "", start_date = None, end_date = None, priority=-1, amount_to_plan = 1, duration = 1, attendees = []):
         self.name = name
-        self.type = type_
         self.start_date = start_date
         self.end_date = end_date
         self.priority = int(priority)
