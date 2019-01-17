@@ -2,7 +2,7 @@ from owlready2 import *
 import numpy as np
 from random import randint
 
-onto = get_ontology('./Agent/Resources/Ontology/AppointmentTypes3.owl')
+onto = get_ontology('./Agent/Resources/Ontology/NewApps.owl')
 onto.load()
 
 class Appointment(object):

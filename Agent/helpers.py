@@ -11,7 +11,7 @@ import numpy as np
 import json
 import pandas as pd
 
-onto = get_ontology('./Agent/Resources/Ontology/AppointmentTypes3.owl')
+onto = get_ontology('./Agent/Resources/Ontology/NewApps.owl')
 onto.load()
 
 """
