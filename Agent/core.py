@@ -11,7 +11,7 @@ from Classes.Planner import Planner
 def start():
     print("Agent running.")
     # load the usercase and create a df to load in the appointments
-    appointment = helpers.loadUsercase('Testcase2')
+    appointment = helpers.loadUsercase('Testcase5')
     df = helpers.createDateDataFrame(appointment.start_date, appointment.end_date, 0)
 
     # Create a hook and set load events into a dataframe

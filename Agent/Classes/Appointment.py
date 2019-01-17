@@ -5,9 +5,10 @@ from random import randint
 onto = get_ontology('./Agent/Resources/Ontology/AppointmentTypes3.owl')
 onto.load()
 
-class Appointment:
+class Appointment(object):
     def __init__(self, name = "", type_ = "", start_date = None, end_date = None, priority=-1, amount_to_plan = 1, duration = 1, attendees = []):
         self.name = name
+        self.type = type_
         self.start_date = start_date
         self.end_date = end_date
         self.priority = int(priority)
@@ -82,7 +83,7 @@ class Appointment:
 
     def getDayParts(self):
         type_day_parts = []
-
+        
         if onto["Night"] in onto[self.type].hasPartofDay:
             type_day_parts.extend([0,1,2,3,4,5])
         if onto["Morning"] in onto[self.type].hasPartofDay:
