@@ -87,8 +87,9 @@ class CalendarAPI(object):
         
     def writeToCalendar(self, best_planning, type, priority, duration, id):
         best_planning = parser.parse(best_planning)
+        best_planning -= timedelta(hours=1)
 
-        end_best_planning =best_planning + timedelta(hours=duration)
+        end_best_planning = best_planning + timedelta(hours=duration)
         startEv = str(best_planning.date()) + 'T' + str(best_planning.time()) + 'Z'
         endEv = str(end_best_planning.date()) + 'T' + str(end_best_planning.time()) + 'Z'
 
