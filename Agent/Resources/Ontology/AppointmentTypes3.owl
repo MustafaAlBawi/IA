@@ -1,0 +1,406 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes">
+    <Prefix name="" IRI="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="AppointmentTypes" IRI="http://www.semanticweb.org/tycho/ontologies/2018/11/AppointmentTypes#"/>
+    <Declaration>
+        <Class IRI="#Appointments"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Friends"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Hobbies"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Leisure"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Sports"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Work"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasDuration"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasLocation"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasPartofDay"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasPriority"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasTimeSlot"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#withPeople"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasTime"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Afternoon"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Birthday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Cinema"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Coffee"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#CoffeeMeeting"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Colleagues"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#DailyMeeting"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Dinner"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Drinks"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Evening"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Family"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Friends"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Lunch"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Matchday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Midday"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Morning"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Night"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Practice"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SmurfLarping"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Teammates"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#WeeklyMeeting"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#Friends"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Appointments"/>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#withPeople"/>
+                <NamedIndividual IRI="#Friends"/>
+            </ObjectHasValue>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Sports"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Appointments"/>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#withPeople"/>
+                <NamedIndividual IRI="#Teammates"/>
+            </ObjectHasValue>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Work"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Appointments"/>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#withPeople"/>
+                <NamedIndividual IRI="#Colleagues"/>
+            </ObjectHasValue>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#Friends"/>
+        <Class IRI="#Leisure"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Hobbies"/>
+        <Class IRI="#Leisure"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Leisure"/>
+        <Class IRI="#Appointments"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Sports"/>
+        <Class IRI="#Hobbies"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Work"/>
+        <Class IRI="#Appointments"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Friends"/>
+        <Class IRI="#Hobbies"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Leisure"/>
+        <Class IRI="#Work"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#Appointments"/>
+        <NamedIndividual IRI="#Cinema"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Appointments"/>
+        <NamedIndividual IRI="#Coffee"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Appointments"/>
+        <NamedIndividual IRI="#CoffeeMeeting"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Appointments"/>
+        <NamedIndividual IRI="#DailyMeeting"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Appointments"/>
+        <NamedIndividual IRI="#Dinner"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Appointments"/>
+        <NamedIndividual IRI="#Drinks"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Appointments"/>
+        <NamedIndividual IRI="#Lunch"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Appointments"/>
+        <NamedIndividual IRI="#Matchday"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Appointments"/>
+        <NamedIndividual IRI="#Practice"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Appointments"/>
+        <NamedIndividual IRI="#WeeklyMeeting"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#Birthday"/>
+        <NamedIndividual IRI="#Afternoon"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#Birthday"/>
+        <NamedIndividual IRI="#Evening"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#Birthday"/>
+        <NamedIndividual IRI="#Family"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#Cinema"/>
+        <NamedIndividual IRI="#Evening"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#Cinema"/>
+        <NamedIndividual IRI="#Friends"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#Coffee"/>
+        <NamedIndividual IRI="#Morning"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#Coffee"/>
+        <NamedIndividual IRI="#Friends"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#CoffeeMeeting"/>
+        <NamedIndividual IRI="#Morning"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#CoffeeMeeting"/>
+        <NamedIndividual IRI="#Colleagues"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#DailyMeeting"/>
+        <NamedIndividual IRI="#Morning"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#DailyMeeting"/>
+        <NamedIndividual IRI="#Colleagues"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#Dinner"/>
+        <NamedIndividual IRI="#Evening"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#Dinner"/>
+        <NamedIndividual IRI="#Family"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#Dinner"/>
+        <NamedIndividual IRI="#Friends"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#Drinks"/>
+        <NamedIndividual IRI="#Night"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#Drinks"/>
+        <NamedIndividual IRI="#Friends"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#Lunch"/>
+        <NamedIndividual IRI="#Midday"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#Lunch"/>
+        <NamedIndividual IRI="#Friends"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#Matchday"/>
+        <NamedIndividual IRI="#Afternoon"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#Matchday"/>
+        <NamedIndividual IRI="#Teammates"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#Practice"/>
+        <NamedIndividual IRI="#Evening"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#Practice"/>
+        <NamedIndividual IRI="#Teammates"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#SmurfLarping"/>
+        <NamedIndividual IRI="#Morning"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#SmurfLarping"/>
+        <NamedIndividual IRI="#Colleagues"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasPartofDay"/>
+        <NamedIndividual IRI="#WeeklyMeeting"/>
+        <NamedIndividual IRI="#Afternoon"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#withPeople"/>
+        <NamedIndividual IRI="#WeeklyMeeting"/>
+        <NamedIndividual IRI="#Colleagues"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasTime"/>
+        <NamedIndividual IRI="#Cinema"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">19</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasTime"/>
+        <NamedIndividual IRI="#Coffee"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">9</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasTime"/>
+        <NamedIndividual IRI="#CoffeeMeeting"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">9</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasTime"/>
+        <NamedIndividual IRI="#DailyMeeting"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">10</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasTime"/>
+        <NamedIndividual IRI="#Dinner"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">18</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasTime"/>
+        <NamedIndividual IRI="#Drinks"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">20</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasTime"/>
+        <NamedIndividual IRI="#Lunch"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">13</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasTime"/>
+        <NamedIndividual IRI="#Matchday"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">15</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasTime"/>
+        <NamedIndividual IRI="#Practice"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">20</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasTime"/>
+        <NamedIndividual IRI="#SmurfLarping"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">8</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasTime"/>
+        <NamedIndividual IRI="#WeeklyMeeting"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">15</Literal>
+    </DataPropertyAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.6.2018-09-06T00:27:41Z) https://github.com/owlcs/owlapi -->
+
